@@ -1,7 +1,7 @@
 function PracticalExp() {
   return (
     <>
-      <h1>test this</h1>
+      <h1>PracticalExp</h1>
     </>
   );
 }
