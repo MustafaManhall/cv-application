@@ -1,13 +1,10 @@
 import "../styles/personalInfo.css";
 
 function PersonalInfo({
-  fullName,
+  personalInfo,
   handleFullName,
-  email,
   handleEmail,
-  phoneNumber,
   handlePhoneNumber,
-  location,
   handleLocation
 }) {
   return (
@@ -22,7 +19,7 @@ function PersonalInfo({
           name="name"
           id="name"
           autoComplete="on"
-          value={fullName}
+          value={personalInfo.fullName}
           onChange={handleFullName}
         />
         <label htmlFor="email" className="email">
@@ -33,7 +30,7 @@ function PersonalInfo({
           name="email"
           id="email"
           autoComplete="on"
-          value={email}
+          value={personalInfo.email}
           onChange={handleEmail}
         />
         <label htmlFor="phone-number" className="phone-number">
@@ -44,7 +41,7 @@ function PersonalInfo({
           name="phone-number"
           id="phone-number"
           autoComplete="on"
-          value={phoneNumber}
+          value={personalInfo.phoneNumber}
           onChange={handlePhoneNumber}
         />
         <label htmlFor="location" className="location">
@@ -55,7 +52,7 @@ function PersonalInfo({
           name="location"
           id="location"
           autoComplete="on"
-          value={location}
+          value={personalInfo.location}
           onChange={handleLocation}
         />
         {/* Not needed right now */}

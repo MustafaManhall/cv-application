@@ -6,10 +6,13 @@ import { useState } from "react";
 import "./styles/App.css";
 
 function App() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [location, setLocation] = useState("");
+
+  const [personalInfo, setPersonalInfo] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    location: "",
+  });
 
   const [formData, setFormData] = useState({
     schoolName: "",
@@ -20,16 +23,16 @@ function App() {
   });
 
   function handleFullName(e) {
-    setFullName(e.target.value);
+    setPersonalInfo({ ...personalInfo, fullName: e.target.value });
   }
   function handleEmail(e) {
-    setEmail(e.target.value);
+    setPersonalInfo({ ...personalInfo, email: e.target.value });
   }
   function handlePhoneNumber(e) {
-    setPhoneNumber(e.target.value);
+    setPersonalInfo({ ...personalInfo, phoneNumber: e.target.value });
   }
   function handleLocation(e) {
-    setLocation(e.target.value);
+    setPersonalInfo({ ...personalInfo, location: e.target.value });
   }
 
   function handleEduInfo(formData) {
@@ -38,33 +41,24 @@ function App() {
       degree: formData.degree,
       startDate: formData.startDate,
       endDate: formData.endDate,
-      eduLocation: formData.eduLocation
+      eduLocation: formData.eduLocation,
     });
   }
   return (
     <>
       <div>
         <PersonalInfo
-          fullName={fullName}
+          personalInfo={personalInfo}
           handleFullName={handleFullName}
-          email={email}
           handleEmail={handleEmail}
-          phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
-          location={location}
           handleLocation={handleLocation}
         />
-        <EduInfo
-          storeFormData={handleEduInfo}
-          data={formData}
-        />
+        <EduInfo storeFormData={handleEduInfo} data={formData} />
         <PracticalExp />
       </div>
       <Preview
-        fullName={fullName}
-        email={email}
-        phoneNumber={phoneNumber}
-        location={location}
+        personalInfo={personalInfo}
         formData={formData}
       />
     </>
