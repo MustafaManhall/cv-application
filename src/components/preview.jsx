@@ -1,6 +1,6 @@
 import { PersonalInfo } from "./personalInfo";
 
-function Preview({ personalInfo, formData }) {
+function Preview({ personalInfo, formData, practicalData }) {
   return (
     <div>
       <h1>Preview</h1>
@@ -16,6 +16,13 @@ function Preview({ personalInfo, formData }) {
         <h2>{formData.startDate}</h2>
         <h2>{formData.endDate}</h2>
         <h2>{formData.eduLocation}</h2>
+      </div>
+      <div>
+        <h2>{practicalData.companyName}</h2>
+        <h2>{practicalData.positionTitle}</h2>
+        <h2>{practicalData.description}</h2>
+        <h2>{practicalData.startDate}</h2>
+        <h2>{practicalData.endDate}</h2>
       </div>
     </div>
   );

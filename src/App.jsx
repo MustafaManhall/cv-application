@@ -22,6 +22,14 @@ function App() {
     eduLocation: "",
   });
 
+  const [practicalForm, setPracticalForm] = useState({
+    companyName: "",
+    positionTitle: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
+
   function handleFullName(e) {
     setPersonalInfo({ ...personalInfo, fullName: e.target.value });
   }
@@ -44,6 +52,16 @@ function App() {
       eduLocation: formData.eduLocation,
     });
   }
+  function handlePracticalForm (practicalData) {
+    setPracticalForm({
+      companyName: practicalData.companyName,
+      positionTitle: practicalData.positionTitle,
+      description: practicalData.description,
+      startDate: practicalData.startDate,
+      endDate: practicalData.endDate
+    });
+  }
+
   return (
     <>
       <div>
@@ -55,11 +73,12 @@ function App() {
           handleLocation={handleLocation}
         />
         <EduInfo storeFormData={handleEduInfo} data={formData} />
-        <PracticalExp />
+        <PracticalExp storePracticalForm={handlePracticalForm} data={practicalForm} />
       </div>
       <Preview
         personalInfo={personalInfo}
         formData={formData}
+        practicalData={practicalForm}
       />
     </>
   );
