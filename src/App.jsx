@@ -9,6 +9,15 @@ function App() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [location, setLocation] = useState("");
+
+  const [formData, setFormData] = useState({
+    schoolName: "",
+    degree: "",
+    startDate: "",
+    endDate: "",
+    eduLocation: "",
+  });
 
   function handleFullName(e) {
     setFullName(e.target.value);
@@ -18,6 +27,19 @@ function App() {
   }
   function handlePhoneNumber(e) {
     setPhoneNumber(e.target.value);
+  }
+  function handleLocation(e) {
+    setLocation(e.target.value);
+  }
+
+  function handleEduInfo(formData) {
+    setFormData({
+      schoolName: formData.schoolName,
+      degree: formData.degree,
+      startDate: formData.startDate,
+      endDate: formData.endDate,
+      eduLocation: formData.eduLocation
+    });
   }
   return (
     <>
@@ -29,11 +51,22 @@ function App() {
           handleEmail={handleEmail}
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
+          location={location}
+          handleLocation={handleLocation}
         />
-        <EduInfo />
+        <EduInfo
+          storeFormData={handleEduInfo}
+          data={formData}
+        />
         <PracticalExp />
       </div>
-      <Preview fullName={fullName} email={email} phoneNumber={phoneNumber} />
+      <Preview
+        fullName={fullName}
+        email={email}
+        phoneNumber={phoneNumber}
+        location={location}
+        formData={formData}
+      />
     </>
   );
 }

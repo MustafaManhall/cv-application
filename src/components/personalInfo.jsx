@@ -7,6 +7,8 @@ function PersonalInfo({
   handleEmail,
   phoneNumber,
   handlePhoneNumber,
+  location,
+  handleLocation
 }) {
   return (
     <>
@@ -44,6 +46,17 @@ function PersonalInfo({
           autoComplete="on"
           value={phoneNumber}
           onChange={handlePhoneNumber}
+        />
+        <label htmlFor="location" className="location">
+          Location
+        </label>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          autoComplete="on"
+          value={location}
+          onChange={handleLocation}
         />
         {/* Not needed right now */}
         {/* <div className="btns">
