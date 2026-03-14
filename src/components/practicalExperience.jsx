@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/practicalExperience.css";
 
-function PracticalExp({ storePracticalForm, data }) {
-  const [practicalForm, setPracticalForm] = useState({
+function PracticalExp({ storePracticalForm, selectedEdu, setSelected }) {
+  const [practicalForm, setPracticalForm] = useState(selectedEdu || {
     companyName: "",
     positionTitle: "",
     description: "",
@@ -36,18 +36,8 @@ function PracticalExp({ storePracticalForm, data }) {
       startDate: "",
       endDate: "",
     });
+    setSelected(null);
   }
-  function handleEditBtn(e) {
-    e.preventDefault();
-    setPracticalForm({
-      companyName: data.companyName,
-      positionTitle: data.positionTitle,
-      description: data.description,
-      startDate: data.startDate,
-      endDate: data.endDate
-    });
-  }
-
   return (
     <>
       <h1>PracticalExp</h1>
@@ -112,9 +102,6 @@ function PracticalExp({ storePracticalForm, data }) {
         />
 
         <div className="btns">
-          <button className="edit-btn" onClick={handleEditBtn}>
-            Edit
-          </button>
           <button type="submit" className="submit-btn" onClick={handleClickBtn}>
             Submit
           </button>

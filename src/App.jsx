@@ -16,13 +16,14 @@ function App() {
   const [eduList, setEduList] = useState([]);
   const [selectedEdu, setSelectedEdu] = useState(null);
 
-  const [practicalForm, setPracticalForm] = useState({
-    companyName: "",
-    positionTitle: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-  });
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [practicalList, setPracticalList] = useState([]);
+  const [selectedExp, setSelectedExp] = useState(null);
+
+
+  function handleIsFormOpen() {
+    setIsFormOpen(true);
+  }
 
   function handleFullName(e) {
     setPersonalInfo({ ...personalInfo, fullName: e.target.value });
@@ -40,32 +41,48 @@ function App() {
   function handleEduInfo(formData) {
     if (formData.id === undefined) {
       setEduList([...eduList, { id: crypto.randomUUID(), ...formData }]);
-      setSelectedEdu(null);
     } else {
       setEduList(
         eduList.map((data) => {
-        if(data.id === formData.id) {
-          return formData;
-        } else {
-          return data;
-        }
-      }));
+          if (data.id === formData.id) {
+            return formData;
+          } else {
+            return data;
+          }
+        }),
+      );
     }
   }
   function handlePracticalForm(practicalData) {
-    setPracticalForm({
-      companyName: practicalData.companyName,
-      positionTitle: practicalData.positionTitle,
-      description: practicalData.description,
-      startDate: practicalData.startDate,
-      endDate: practicalData.endDate,
-    });
+    if (practicalData.id === undefined) {
+      setPracticalList([
+      ...practicalList,
+      { id: crypto.randomUUID(), ...practicalData },
+    ]);
+    setIsFormOpen(false);
+    } else {
+      setPracticalList(
+        practicalList.map((data) => {
+          if (data.id === practicalData.id) {
+            return practicalData;
+          } else {
+            return data;
+          }
+        })
+      );
+      setIsFormOpen(false);
+    }
   }
 
   function handleEditBtn(key) {
-    // e.preventDefault();
     const item = eduList.find((data) => data.id === key);
     setSelectedEdu(item);
+  }
+
+  function handleEditExpBtn(key) {
+    const item = practicalList.find((data) => data.id === key);
+    setSelectedExp(item);
+    setIsFormOpen(true);
   }
 
   return (
@@ -83,16 +100,24 @@ function App() {
           selectedEdu={selectedEdu}
           setSelected={setSelectedEdu}
         />
-        <PracticalExp
-          storePracticalForm={handlePracticalForm}
-          data={practicalForm}
-        />
+        {!isFormOpen && <button className="add-experience" onClick={handleIsFormOpen}>
+          Add Experience
+        </button>}
+        {isFormOpen && (
+          <PracticalExp
+            storePracticalForm={handlePracticalForm}
+            data={practicalList}
+            selectedEdu={selectedExp}
+            setSelected={setSelectedExp}
+          />
+        )}
       </div>
       <Preview
         personalInfo={personalInfo}
         eduData={eduList}
-        practicalData={practicalForm}
+        practicalData={practicalList}
         editBtn={handleEditBtn}
+        editExpBtn={handleEditExpBtn}
       />
     </>
   );
