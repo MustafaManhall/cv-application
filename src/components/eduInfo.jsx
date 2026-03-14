@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/eduInfo.css";
 
-function EduInfo({ storeFormData, data }) {
+function EduInfo({ storeFormData, selectedEdu, setSelected }) {
   const [formData, setFormData] = useState({
     schoolName: "",
     degree: "",
@@ -9,6 +9,13 @@ function EduInfo({ storeFormData, data }) {
     endDate: "",
     eduLocation: "",
   });
+
+  useEffect(() => {
+    if (selectedEdu) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFormData(selectedEdu);
+    }
+  },[selectedEdu])
 
   function handleSchoolName(e) {
     setFormData({ ...formData, schoolName: e.target.value });
@@ -35,17 +42,9 @@ function EduInfo({ storeFormData, data }) {
       endDate: "",
       eduLocation: "",
     });
+    setSelected(null);
   }
-  function handleEditBtn(e) {
-    e.preventDefault();
-    setFormData({
-      schoolName: data.schoolName,
-      degree: data.degree,
-      startDate: data.startDate,
-      endDate: data.endDate,
-      eduLocation: data.eduLocation,
-    });
-  }
+  
   return (
     <>
       <h1>EduInfo</h1>
@@ -108,9 +107,6 @@ function EduInfo({ storeFormData, data }) {
           value={formData.eduLocation}
         />
         <div className="btns">
-          <button className="edit-btn" onClick={handleEditBtn}>
-            Edit
-          </button>
           <button type="submit" className="submit-btn" onClick={handleClickBtn}>
             Submit
           </button>

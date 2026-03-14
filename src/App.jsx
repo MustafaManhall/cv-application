@@ -6,7 +6,6 @@ import { useState } from "react";
 import "./styles/App.css";
 
 function App() {
-
   const [personalInfo, setPersonalInfo] = useState({
     fullName: "",
     email: "",
@@ -14,13 +13,8 @@ function App() {
     location: "",
   });
 
-  const [formData, setFormData] = useState({
-    schoolName: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    eduLocation: "",
-  });
+  const [eduList, setEduList] = useState([]);
+  const [selectedEdu, setSelectedEdu] = useState(null);
 
   const [practicalForm, setPracticalForm] = useState({
     companyName: "",
@@ -44,22 +38,34 @@ function App() {
   }
 
   function handleEduInfo(formData) {
-    setFormData({
-      schoolName: formData.schoolName,
-      degree: formData.degree,
-      startDate: formData.startDate,
-      endDate: formData.endDate,
-      eduLocation: formData.eduLocation,
-    });
+    if (formData.id === undefined) {
+      setEduList([...eduList, { id: crypto.randomUUID(), ...formData }]);
+      setSelectedEdu(null);
+    } else {
+      setEduList(
+        eduList.map((data) => {
+        if(data.id === formData.id) {
+          return formData;
+        } else {
+          return data;
+        }
+      }));
+    }
   }
-  function handlePracticalForm (practicalData) {
+  function handlePracticalForm(practicalData) {
     setPracticalForm({
       companyName: practicalData.companyName,
       positionTitle: practicalData.positionTitle,
       description: practicalData.description,
       startDate: practicalData.startDate,
-      endDate: practicalData.endDate
+      endDate: practicalData.endDate,
     });
+  }
+
+  function handleEditBtn(key) {
+    // e.preventDefault();
+    const item = eduList.find((data) => data.id === key);
+    setSelectedEdu(item);
   }
 
   return (
@@ -72,13 +78,21 @@ function App() {
           handlePhoneNumber={handlePhoneNumber}
           handleLocation={handleLocation}
         />
-        <EduInfo storeFormData={handleEduInfo} data={formData} />
-        <PracticalExp storePracticalForm={handlePracticalForm} data={practicalForm} />
+        <EduInfo
+          storeFormData={handleEduInfo}
+          selectedEdu={selectedEdu}
+          setSelected={setSelectedEdu}
+        />
+        <PracticalExp
+          storePracticalForm={handlePracticalForm}
+          data={practicalForm}
+        />
       </div>
       <Preview
         personalInfo={personalInfo}
-        formData={formData}
+        eduData={eduList}
         practicalData={practicalForm}
+        editBtn={handleEditBtn}
       />
     </>
   );

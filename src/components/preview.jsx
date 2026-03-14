@@ -1,6 +1,6 @@
 import { PersonalInfo } from "./personalInfo";
 
-function Preview({ personalInfo, formData, practicalData }) {
+function Preview({ personalInfo, eduData, practicalData, editBtn }) {
   return (
     <div>
       <h1>Preview</h1>
@@ -10,13 +10,18 @@ function Preview({ personalInfo, formData, practicalData }) {
         <h2>{personalInfo.phoneNumber}</h2>
         <h2>{personalInfo.location}</h2>
       </div>
-      <div>
-        <h2>{formData.schoolName}</h2>
-        <h2>{formData.degree}</h2>
-        <h2>{formData.startDate}</h2>
-        <h2>{formData.endDate}</h2>
-        <h2>{formData.eduLocation}</h2>
-      </div>
+      {eduData.map((data) => {
+        return <div key={data.id}>
+          <h2>{data.schoolName}</h2>
+          <h2>{data.degree}</h2>
+          <h2>{data.startDate}</h2>
+          <h2>{data.endDate}</h2>
+          <h2>{data.eduLocation}</h2>
+          <button className="edit-btn" onClick={() => editBtn(data.id)}>
+            Edit
+          </button>
+        </div>;
+      })}
       <div>
         <h2>{practicalData.companyName}</h2>
         <h2>{practicalData.positionTitle}</h2>
