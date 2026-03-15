@@ -2,8 +2,9 @@ import { EduInfo } from "./components/eduInfo";
 import { PersonalInfo } from "./components/personalInfo";
 import { PracticalExp } from "./components/practicalExperience";
 import { Preview } from "./components/preview";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./styles/App.css";
+import { DownloadCv } from "./components/downloadCv";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -19,6 +20,9 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [practicalList, setPracticalList] = useState([]);
   const [selectedExp, setSelectedExp] = useState(null);
+
+  const cv = useRef();
+  const [isPrinting, setIsPrinting] = useState(false);
 
 
   function handleIsFormOpen() {
@@ -111,6 +115,7 @@ function App() {
             setSelected={setSelectedExp}
           />
         )}
+        <DownloadCv cvRef={cv} setPrinting={setIsPrinting}/>
       </div>
       <Preview
         personalInfo={personalInfo}
@@ -118,6 +123,8 @@ function App() {
         practicalData={practicalList}
         editBtn={handleEditBtn}
         editExpBtn={handleEditExpBtn}
+        cvRef={cv}
+        isPrinting={isPrinting}
       />
     </>
   );

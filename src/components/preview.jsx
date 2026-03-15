@@ -1,8 +1,16 @@
-import { PersonalInfo } from "./personalInfo";
+import "../styles/preview.css";
 
-function Preview({ personalInfo, eduData, practicalData, editBtn, editExpBtn }) {
+function Preview({
+  personalInfo,
+  eduData,
+  practicalData,
+  editBtn,
+  editExpBtn,
+  cvRef,
+  isPrinting,
+}) {
   return (
-    <div>
+    <div ref={cvRef} className="preview">
       <h1>Preview</h1>
       <div>
         <h2>{personalInfo.fullName}</h2>
@@ -18,9 +26,11 @@ function Preview({ personalInfo, eduData, practicalData, editBtn, editExpBtn }) 
             <h2>{data.startDate}</h2>
             <h2>{data.endDate}</h2>
             <h2>{data.eduLocation}</h2>
-            <button className="edit-btn" onClick={() => editBtn(data.id)}>
-              Edit
-            </button>
+            {!isPrinting && (
+              <button className="edit-btn" onClick={() => editBtn(data.id)}>
+                Edit
+              </button>
+            )}
           </div>
         );
       })}
@@ -32,9 +42,11 @@ function Preview({ personalInfo, eduData, practicalData, editBtn, editExpBtn }) 
             <h2>{data.description}</h2>
             <h2>{data.startDate}</h2>
             <h2>{data.endDate}</h2>
-            <button className="edit-btn" onClick={() => editExpBtn(data.id)}>
-              Edit
-            </button>
+            {!isPrinting && (
+              <button className="edit-btn" onClick={() => editExpBtn(data.id)}>
+                Edit
+              </button>
+            )}
           </div>
         );
       })}
