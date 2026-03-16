@@ -10,13 +10,6 @@ function EduInfo({ storeFormData, selectedEdu, setSelected }) {
     eduLocation: "",
   });
 
-  // useEffect(() => {
-  //   if (selectedEdu) {
-  //     // eslint-disable-next-line react-hooks/set-state-in-effect
-  //     setFormData(selectedEdu);
-  //   }
-  // },[selectedEdu])
-
   function handleSchoolName(e) {
     setFormData({ ...formData, schoolName: e.target.value });
   }

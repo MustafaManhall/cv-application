@@ -1,10 +1,11 @@
+import { useRef, useState } from "react";
 import { EduInfo } from "./components/eduInfo";
 import { PersonalInfo } from "./components/personalInfo";
 import { PracticalExp } from "./components/practicalExperience";
 import { Preview } from "./components/preview";
-import { useRef, useState } from "react";
-import "./styles/App.css";
 import { DownloadCv } from "./components/downloadCv";
+import { Card } from "./components/card";
+import "./styles/App.css";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -17,7 +18,10 @@ function App() {
   const [eduList, setEduList] = useState([]);
   const [selectedEdu, setSelectedEdu] = useState(null);
 
-  const [isFormOpen, setIsFormOpen] = useState({ practicalForm: false, eduForm: false});
+  const [isFormOpen, setIsFormOpen] = useState({
+    practicalForm: false,
+    eduForm: false,
+  });
 
   const [practicalList, setPracticalList] = useState([]);
   const [selectedExp, setSelectedExp] = useState(null);
@@ -45,7 +49,7 @@ function App() {
   function handleEduInfo(formData) {
     if (formData.id === undefined) {
       setEduList([...eduList, { id: crypto.randomUUID(), ...formData }]);
-      setIsFormOpen({ ...isFormOpen, eduForm: false});
+      setIsFormOpen({ ...isFormOpen, eduForm: false });
     } else {
       setEduList(
         eduList.map((data) => {
@@ -56,7 +60,7 @@ function App() {
           }
         }),
       );
-      setIsFormOpen({ ...isFormOpen, eduForm: false});
+      setIsFormOpen({ ...isFormOpen, eduForm: false });
     }
   }
   function handlePracticalForm(practicalData) {
@@ -65,7 +69,7 @@ function App() {
         ...practicalList,
         { id: crypto.randomUUID(), ...practicalData },
       ]);
-      setIsFormOpen({ ...isFormOpen, practicalForm: false});
+      setIsFormOpen({ ...isFormOpen, practicalForm: false });
     } else {
       setPracticalList(
         practicalList.map((data) => {
@@ -76,20 +80,20 @@ function App() {
           }
         }),
       );
-      setIsFormOpen({ ...isFormOpen, practicalForm: false});
+      setIsFormOpen({ ...isFormOpen, practicalForm: false });
     }
   }
 
   function handleEditBtn(key) {
     const item = eduList.find((data) => data.id === key);
     setSelectedEdu(item);
-    setIsFormOpen({ ...isFormOpen, eduForm: true});
+    setIsFormOpen({ ...isFormOpen, eduForm: true });
   }
 
   function handleEditExpBtn(key) {
     const item = practicalList.find((data) => data.id === key);
     setSelectedExp(item);
-    setIsFormOpen({ ...isFormOpen, practicalForm: true});
+    setIsFormOpen({ ...isFormOpen, practicalForm: true });
   }
 
   return (
@@ -102,8 +106,12 @@ function App() {
           handlePhoneNumber={handlePhoneNumber}
           handleLocation={handleLocation}
         />
+        <Card data={eduList} titleKey="schoolName" subtitleKey="degree" />
         {!isFormOpen.eduForm && (
-          <button className="add-edu" onClick={() => handleIsFormOpen("eduForm")}>
+          <button
+            className="add-edu"
+            onClick={() => handleIsFormOpen("eduForm")}
+          >
             Add EduInfo
           </button>
         )}
@@ -114,8 +122,16 @@ function App() {
             setSelected={setSelectedEdu}
           />
         )}
+        <Card
+          data={practicalList}
+          titleKey="companyName"
+          subtitleKey="description"
+        />
         {!isFormOpen.practicalForm && (
-          <button className="add-experience" onClick={() => handleIsFormOpen("practicalForm")}>
+          <button
+            className="add-experience"
+            onClick={() => handleIsFormOpen("practicalForm")}
+          >
             Add Experience
           </button>
         )}
@@ -127,17 +143,19 @@ function App() {
             setSelected={setSelectedExp}
           />
         )}
+      </div>
+      <div>
+        <Preview
+          personalInfo={personalInfo}
+          eduData={eduList}
+          practicalData={practicalList}
+          editBtn={handleEditBtn}
+          editExpBtn={handleEditExpBtn}
+          cvRef={cv}
+          isPrinting={isPrinting}
+        />
         <DownloadCv cvRef={cv} setPrinting={setIsPrinting} />
       </div>
-      <Preview
-        personalInfo={personalInfo}
-        eduData={eduList}
-        practicalData={practicalList}
-        editBtn={handleEditBtn}
-        editExpBtn={handleEditExpBtn}
-        cvRef={cv}
-        isPrinting={isPrinting}
-      />
     </>
   );
 }
