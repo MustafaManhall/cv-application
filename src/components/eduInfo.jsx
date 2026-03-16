@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/eduInfo.css";
 
 function EduInfo({ storeFormData, selectedEdu, setSelected }) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState( selectedEdu || {
     schoolName: "",
     degree: "",
     startDate: "",
@@ -10,12 +10,12 @@ function EduInfo({ storeFormData, selectedEdu, setSelected }) {
     eduLocation: "",
   });
 
-  useEffect(() => {
-    if (selectedEdu) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFormData(selectedEdu);
-    }
-  },[selectedEdu])
+  // useEffect(() => {
+  //   if (selectedEdu) {
+  //     // eslint-disable-next-line react-hooks/set-state-in-effect
+  //     setFormData(selectedEdu);
+  //   }
+  // },[selectedEdu])
 
   function handleSchoolName(e) {
     setFormData({ ...formData, schoolName: e.target.value });
