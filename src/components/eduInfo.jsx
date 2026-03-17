@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/eduInfo.css";
 
-function EduInfo({ storeFormData, selectedEdu, setSelected }) {
+function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
   const [formData, setFormData] = useState( selectedEdu || {
     schoolName: "",
     degree: "",
@@ -100,6 +100,9 @@ function EduInfo({ storeFormData, selectedEdu, setSelected }) {
           value={formData.eduLocation}
         />
         <div className="btns">
+          <button type="button" className="close-btn" onClick={handleClose}>
+            Close
+          </button>
           <button type="submit" className="submit-btn" onClick={handleClickBtn}>
             Submit
           </button>

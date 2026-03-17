@@ -104,6 +104,10 @@ function App() {
     setPracticalList(newList);
   }
 
+  function handleCloseBtn (form) {
+    setIsFormOpen({ ...isFormOpen, [form]: false });
+  }
+
   return (
     <>
       <div>
@@ -134,6 +138,7 @@ function App() {
             storeFormData={handleEduInfo}
             selectedEdu={selectedEdu}
             setSelected={setSelectedEdu}
+            handleClose={() => handleCloseBtn("eduForm")}
           />
         )}
         <Card
@@ -157,6 +162,7 @@ function App() {
             data={practicalList}
             selectedEdu={selectedExp}
             setSelected={setSelectedExp}
+            handleClose={() => handleCloseBtn("practicalForm")}
           />
         )}
       </div>

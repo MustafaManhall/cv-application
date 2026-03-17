@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/practicalExperience.css";
 
-function PracticalExp({ storePracticalForm, selectedEdu, setSelected }) {
+function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClose }) {
   const [practicalForm, setPracticalForm] = useState(selectedEdu || {
     companyName: "",
     positionTitle: "",
@@ -102,6 +102,9 @@ function PracticalExp({ storePracticalForm, selectedEdu, setSelected }) {
         />
 
         <div className="btns">
+          <button type="button" className="close-btn" onClick={handleClose}>
+            Close
+          </button>
           <button type="submit" className="submit-btn" onClick={handleClickBtn}>
             Submit
           </button>
