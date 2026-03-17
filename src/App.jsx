@@ -96,6 +96,15 @@ function App() {
     setIsFormOpen({ ...isFormOpen, practicalForm: true });
   }
 
+  function handleDeleteEduBtn(key) {
+    const newList = eduList.filter((data) => data.id !== key);
+    setEduList(newList);
+  }
+  function handleDeleteExpBtn(key) {
+    const newList = practicalList.filter((data) => data.id !== key);
+    setPracticalList(newList);
+  }
+
   return (
     <>
       <div>
@@ -106,7 +115,7 @@ function App() {
           handlePhoneNumber={handlePhoneNumber}
           handleLocation={handleLocation}
         />
-        <Card data={eduList} titleKey="schoolName" subtitleKey="degree" />
+        <Card data={eduList} titleKey="schoolName" subtitleKey="degree" handleDelete={handleDeleteEduBtn} />
         {!isFormOpen.eduForm && (
           <button
             className="add-edu"
@@ -126,6 +135,7 @@ function App() {
           data={practicalList}
           titleKey="companyName"
           subtitleKey="description"
+          handleDelete={handleDeleteExpBtn}
         />
         {!isFormOpen.practicalForm && (
           <button
