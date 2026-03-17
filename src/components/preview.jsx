@@ -4,10 +4,7 @@ function Preview({
   personalInfo,
   eduData,
   practicalData,
-  editBtn,
-  editExpBtn,
-  cvRef,
-  isPrinting,
+  cvRef
 }) {
   return (
     <div ref={cvRef} className="preview">
@@ -26,11 +23,6 @@ function Preview({
             <h2>{data.startDate}</h2>
             <h2>{data.endDate}</h2>
             <h2>{data.eduLocation}</h2>
-            {!isPrinting && (
-              <button className="edit-btn" onClick={() => editBtn(data.id)}>
-                Edit
-              </button>
-            )}
           </div>
         );
       })}
@@ -42,11 +34,6 @@ function Preview({
             <h2>{data.description}</h2>
             <h2>{data.startDate}</h2>
             <h2>{data.endDate}</h2>
-            {!isPrinting && (
-              <button className="edit-btn" onClick={() => editExpBtn(data.id)}>
-                Edit
-              </button>
-            )}
           </div>
         );
       })}

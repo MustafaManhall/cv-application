@@ -1,6 +1,6 @@
 import "../styles/card.css";
 
-function Card({ data, titleKey, subtitleKey, handleDelete }) {
+function Card({ data, titleKey, subtitleKey, handleDelete, handleEdit }) {
   return data.map((item) => {
     return (
       <div className="card" key={item.id}>
@@ -12,8 +12,12 @@ function Card({ data, titleKey, subtitleKey, handleDelete }) {
           </div>
         </div>
         <div className="card-btns">
-          <button>Edit</button>
-          <button className="delete-btn" onClick={() => handleDelete(item.id)}>Delete</button>
+          <button className="edit-btn" onClick={() => handleEdit(item.id)}>
+            Edit
+          </button>
+          <button className="delete-btn" onClick={() => handleDelete(item.id)}>
+            Delete
+          </button>
         </div>
       </div>
     );

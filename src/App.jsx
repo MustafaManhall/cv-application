@@ -27,7 +27,6 @@ function App() {
   const [selectedExp, setSelectedExp] = useState(null);
 
   const cv = useRef();
-  const [isPrinting, setIsPrinting] = useState(false);
 
   function handleIsFormOpen(form) {
     setIsFormOpen({ ...isFormOpen, [form]: true });
@@ -84,7 +83,7 @@ function App() {
     }
   }
 
-  function handleEditBtn(key) {
+  function handleEditEduBtn(key) {
     const item = eduList.find((data) => data.id === key);
     setSelectedEdu(item);
     setIsFormOpen({ ...isFormOpen, eduForm: true });
@@ -115,7 +114,13 @@ function App() {
           handlePhoneNumber={handlePhoneNumber}
           handleLocation={handleLocation}
         />
-        <Card data={eduList} titleKey="schoolName" subtitleKey="degree" handleDelete={handleDeleteEduBtn} />
+        <Card
+          data={eduList}
+          titleKey="schoolName"
+          subtitleKey="degree"
+          handleDelete={handleDeleteEduBtn}
+          handleEdit={handleEditEduBtn}
+        />
         {!isFormOpen.eduForm && (
           <button
             className="add-edu"
@@ -136,6 +141,7 @@ function App() {
           titleKey="companyName"
           subtitleKey="description"
           handleDelete={handleDeleteExpBtn}
+          handleEdit={handleEditExpBtn}
         />
         {!isFormOpen.practicalForm && (
           <button
@@ -159,12 +165,9 @@ function App() {
           personalInfo={personalInfo}
           eduData={eduList}
           practicalData={practicalList}
-          editBtn={handleEditBtn}
-          editExpBtn={handleEditExpBtn}
           cvRef={cv}
-          isPrinting={isPrinting}
         />
-        <DownloadCv cvRef={cv} setPrinting={setIsPrinting} />
+        <DownloadCv cvRef={cv} />
       </div>
     </>
   );
