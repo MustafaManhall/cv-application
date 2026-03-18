@@ -1,4 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .personal-info {
     display: flex;
     flex-direction: column;
+}
+
+.header {
+    color: #378ADD;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+.personal-info label {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.personal-info input {
+    width: 100%;
+    background-color: #1e2436;
+    font-size: 0.8rem;
+    border: solid 1px #2a2f3e;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #e8eaf0;
+    outline: none;
+}
+
+.personal-info input:focus {
+    border-color: #378ADD;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 12px ;
 }

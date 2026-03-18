@@ -2,13 +2,15 @@ import { useState } from "react";
 import "../styles/eduInfo.css";
 
 function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
-  const [formData, setFormData] = useState( selectedEdu || {
-    schoolName: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    eduLocation: "",
-  });
+  const [formData, setFormData] = useState(
+    selectedEdu || {
+      schoolName: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      eduLocation: "",
+    },
+  );
 
   function handleSchoolName(e) {
     setFormData({ ...formData, schoolName: e.target.value });
@@ -37,11 +39,10 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
     });
     setSelected(null);
   }
-  
+
   return (
-    <>
-      <h1>EduInfo</h1>
-      <form className="edu-info">
+    <form className="edu-info">
+      <div className="form-group">
         <label htmlFor="school-name" className="school-name">
           School Name
         </label>
@@ -53,6 +54,8 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           onChange={handleSchoolName}
           value={formData.schoolName}
         />
+      </div>
+      <div className="form-group">
         <label htmlFor="degree" className="degree">
           Degree
         </label>
@@ -64,30 +67,37 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           onChange={handleDegree}
           value={formData.degree}
         />
+      </div>
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="start-date" className="start-date">
+            Start Date
+          </label>
+          <input
+            type="date"
+            name="start-date"
+            id="start-date"
+            autoComplete="on"
+            onChange={handleStartDate}
+            value={formData.startDate}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="end-date" className="end-date">
+            End Date
+          </label>
+          <input
+            type="date"
+            name="end-date"
+            id="end-date"
+            autoComplete="on"
+            onChange={handleEndDate}
+            value={formData.endDate}
+          />
+        </div>
+      </div>
 
-        <label htmlFor="start-date" className="start-date">
-          Start Date
-        </label>
-        <input
-          type="date"
-          name="start-date"
-          id="start-date"
-          autoComplete="on"
-          onChange={handleStartDate}
-          value={formData.startDate}
-        />
-        <label htmlFor="end-date" className="end-date">
-          End Date
-        </label>
-        <input
-          type="date"
-          name="end-date"
-          id="end-date"
-          autoComplete="on"
-          onChange={handleEndDate}
-          value={formData.endDate}
-        />
-
+      <div className="form-group">
         <label htmlFor="location" className="location">
           Location
         </label>
@@ -99,16 +109,16 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           onChange={handleEduLocation}
           value={formData.eduLocation}
         />
-        <div className="btns">
-          <button type="button" className="close-btn" onClick={handleClose}>
-            Close
-          </button>
-          <button type="submit" className="submit-btn" onClick={handleClickBtn}>
-            Submit
-          </button>
-        </div>
-      </form>
-    </>
+      </div>
+      <div className="btns">
+        <button type="button" className="btn btn-outline" onClick={handleClose}>
+          Close
+        </button>
+        <button type="submit" className="btn btn-outline" onClick={handleClickBtn}>
+          Submit
+        </button>
+      </div>
+    </form>
   );
 }
 

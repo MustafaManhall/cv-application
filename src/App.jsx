@@ -5,6 +5,7 @@ import { PracticalExp } from "./components/practicalExperience";
 import { Preview } from "./components/preview";
 import { DownloadCv } from "./components/downloadCv";
 import { Card } from "./components/card";
+import { IoMdAdd } from "react-icons/io";
 import "./styles/App.css";
 
 function App() {
@@ -15,7 +16,16 @@ function App() {
     location: "",
   });
 
-  const [eduList, setEduList] = useState([]);
+  const [eduList, setEduList] = useState([
+    {
+      id: "edu-init",
+      schoolName: "MIT",
+      degree: "BSc Computer Science",
+      startDate: "2020-01-01",
+      endDate: "2024-09-01",
+      eduLocation: "Baghdad - iraq",
+    },
+  ]);
   const [selectedEdu, setSelectedEdu] = useState(null);
 
   const [isFormOpen, setIsFormOpen] = useState({
@@ -23,7 +33,16 @@ function App() {
     eduForm: false,
   });
 
-  const [practicalList, setPracticalList] = useState([]);
+  const [practicalList, setPracticalList] = useState([
+    {
+      id: "exp-init",
+      companyName: "Google",
+      positionTitle: "Frontend Developer",
+      description: "",
+      startDate: "2024-10-01",
+      endDate: "2026-03-18",
+    },
+  ]);
   const [selectedExp, setSelectedExp] = useState(null);
 
   const cv = useRef();
@@ -104,76 +123,86 @@ function App() {
     setPracticalList(newList);
   }
 
-  function handleCloseBtn (form) {
+  function handleCloseBtn(form) {
     setIsFormOpen({ ...isFormOpen, [form]: false });
   }
 
   return (
     <>
-      <div>
-        <PersonalInfo
-          personalInfo={personalInfo}
-          handleFullName={handleFullName}
-          handleEmail={handleEmail}
-          handlePhoneNumber={handlePhoneNumber}
-          handleLocation={handleLocation}
-        />
-        <Card
-          data={eduList}
-          titleKey="schoolName"
-          subtitleKey="degree"
-          handleDelete={handleDeleteEduBtn}
-          handleEdit={handleEditEduBtn}
-        />
-        {!isFormOpen.eduForm && (
-          <button
-            className="add-edu"
-            onClick={() => handleIsFormOpen("eduForm")}
-          >
-            Add EduInfo
-          </button>
-        )}
-        {isFormOpen.eduForm && (
-          <EduInfo
-            storeFormData={handleEduInfo}
-            selectedEdu={selectedEdu}
-            setSelected={setSelectedEdu}
-            handleClose={() => handleCloseBtn("eduForm")}
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h1>CV Builder</h1>
+          <p>Fill in your details on the left</p>
+        </div>
+        <div className="sidebar-content">
+          <PersonalInfo
+            personalInfo={personalInfo}
+            handleFullName={handleFullName}
+            handleEmail={handleEmail}
+            handlePhoneNumber={handlePhoneNumber}
+            handleLocation={handleLocation}
           />
-        )}
-        <Card
-          data={practicalList}
-          titleKey="companyName"
-          subtitleKey="description"
-          handleDelete={handleDeleteExpBtn}
-          handleEdit={handleEditExpBtn}
-        />
-        {!isFormOpen.practicalForm && (
-          <button
-            className="add-experience"
-            onClick={() => handleIsFormOpen("practicalForm")}
-          >
-            Add Experience
-          </button>
-        )}
-        {isFormOpen.practicalForm && (
-          <PracticalExp
-            storePracticalForm={handlePracticalForm}
+          <div className="divider"></div>
+          <Card
+            data={eduList}
+            titleKey="schoolName"
+            subtitleKey="degree"
+            handleDelete={handleDeleteEduBtn}
+            handleEdit={handleEditEduBtn}
+            sectionTitle="Education"
+          />
+          {!isFormOpen.eduForm && (
+            <button
+              className="add btn btn-outline"
+              onClick={() => handleIsFormOpen("eduForm")}
+            >
+              <IoMdAdd /> Add EduInfo
+            </button>
+          )}
+          {isFormOpen.eduForm && (
+            <EduInfo
+              storeFormData={handleEduInfo}
+              selectedEdu={selectedEdu}
+              setSelected={setSelectedEdu}
+              handleClose={() => handleCloseBtn("eduForm")}
+            />
+          )}
+          <div className="divider"></div>
+          <Card
             data={practicalList}
-            selectedEdu={selectedExp}
-            setSelected={setSelectedExp}
-            handleClose={() => handleCloseBtn("practicalForm")}
+            titleKey="companyName"
+            subtitleKey="description"
+            handleDelete={handleDeleteExpBtn}
+            handleEdit={handleEditExpBtn}
+            sectionTitle="Experience"
           />
-        )}
+          {!isFormOpen.practicalForm && (
+            <button
+              className="add btn btn-outline"
+              onClick={() => handleIsFormOpen("practicalForm")}
+            >
+              <IoMdAdd /> Add Experience
+            </button>
+          )}
+          {isFormOpen.practicalForm && (
+            <PracticalExp
+              storePracticalForm={handlePracticalForm}
+              data={practicalList}
+              selectedEdu={selectedExp}
+              setSelected={setSelectedExp}
+              handleClose={() => handleCloseBtn("practicalForm")}
+            />
+          )}
+        </div>
       </div>
-      <div>
+      <div className="preview">
+        <DownloadCv cvRef={cv} />
         <Preview
           personalInfo={personalInfo}
           eduData={eduList}
           practicalData={practicalList}
           cvRef={cv}
         />
-        <DownloadCv cvRef={cv} />
       </div>
     </>
   );

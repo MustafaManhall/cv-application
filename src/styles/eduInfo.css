@@ -2,3 +2,54 @@
     display: flex;
     flex-direction: column;
 }
+
+.edu-info label {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.edu-info input {
+    width: 100%;
+    background-color: #1e2436;
+    font-size: 0.8rem;
+    border: solid 1px #2a2f3e;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #e8eaf0;
+    outline: none;
+}
+
+.edu-info input:focus {
+    border-color: #378ADD;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 12px ;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #2a2f3e;
+}

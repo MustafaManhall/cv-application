@@ -2,15 +2,18 @@ import html2pdf from "html2pdf.js";
 import "../styles/downloadCv.css";
 
 function DownloadCv({ cvRef }) {
-  async function handleDownload() {
+  function handleDownload() {
     const element = cvRef.current;
-    await html2pdf().from(element).save();
+    html2pdf().from(element).save();
   }
 
   return (
-    <button className="downloadBtn" onClick={handleDownload}>
-      Download Cv
-    </button>
+    <div className="preview-header">
+      <h2>Live Preview</h2>
+      <button className="downloadBtn" onClick={handleDownload}>
+        Download Cv
+      </button>
+    </div>
   );
 }
 

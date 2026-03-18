@@ -1,14 +1,21 @@
 import { useState } from "react";
 import "../styles/practicalExperience.css";
 
-function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClose }) {
-  const [practicalForm, setPracticalForm] = useState(selectedEdu || {
-    companyName: "",
-    positionTitle: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-  });
+function PracticalExp({
+  storePracticalForm,
+  selectedEdu,
+  setSelected,
+  handleClose,
+}) {
+  const [practicalForm, setPracticalForm] = useState(
+    selectedEdu || {
+      companyName: "",
+      positionTitle: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+    },
+  );
 
   function handleCompanyName(e) {
     setPracticalForm({ ...practicalForm, companyName: e.target.value });
@@ -39,9 +46,8 @@ function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClos
     setSelected(null);
   }
   return (
-    <>
-      <h1>PracticalExp</h1>
-      <form className="practical-exp">
+    <form className="practical-exp">
+      <div className="form-group">
         <label htmlFor="company-name" className="company-name">
           Company Name
         </label>
@@ -53,7 +59,9 @@ function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClos
           onChange={handleCompanyName}
           value={practicalForm.companyName}
         />
+      </div>
 
+      <div className="form-group">
         <label htmlFor="position-title" className="position-title">
           Position Title
         </label>
@@ -65,7 +73,9 @@ function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClos
           onChange={handlePositionTitle}
           value={practicalForm.positionTitle}
         />
+      </div>
 
+      <div className="form-group">
         <label htmlFor="description" className="description">
           Description
         </label>
@@ -77,40 +87,50 @@ function PracticalExp({ storePracticalForm, selectedEdu, setSelected, handleClos
           onChange={handleDescription}
           value={practicalForm.description}
         />
+      </div>
 
-        <label htmlFor="start-date" className="start-date">
-          Start Date
-        </label>
-        <input
-          type="date"
-          name="start-date"
-          id="start-date"
-          autoComplete="on"
-          onChange={handleStartDate}
-          value={practicalForm.startDate}
-        />
-        <label htmlFor="end-date" className="end-date">
-          End Date
-        </label>
-        <input
-          type="date"
-          name="end-date"
-          id="end-date"
-          autoComplete="on"
-          onChange={handleEndDate}
-          value={practicalForm.endDate}
-        />
-
-        <div className="btns">
-          <button type="button" className="close-btn" onClick={handleClose}>
-            Close
-          </button>
-          <button type="submit" className="submit-btn" onClick={handleClickBtn}>
-            Submit
-          </button>
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="start-date" className="start-date">
+            Start Date
+          </label>
+          <input
+            type="date"
+            name="start-date"
+            id="start-date"
+            autoComplete="on"
+            onChange={handleStartDate}
+            value={practicalForm.startDate}
+          />
         </div>
-      </form>
-    </>
+        <div className="form-group">
+          <label htmlFor="end-date" className="end-date">
+            End Date
+          </label>
+          <input
+            type="date"
+            name="end-date"
+            id="end-date"
+            autoComplete="on"
+            onChange={handleEndDate}
+            value={practicalForm.endDate}
+          />
+        </div>
+      </div>
+
+      <div className="btns">
+        <button type="button" className="btn btn-outline" onClick={handleClose}>
+          Close
+        </button>
+        <button
+          type="submit"
+          className="btn btn-outline"
+          onClick={handleClickBtn}
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   );
 }
 

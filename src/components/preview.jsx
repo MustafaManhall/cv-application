@@ -1,42 +1,52 @@
 import "../styles/preview.css";
 
-function Preview({
-  personalInfo,
-  eduData,
-  practicalData,
-  cvRef
-}) {
+function Preview({ personalInfo, eduData, practicalData, cvRef }) {
   return (
-    <div ref={cvRef} className="preview">
-      <h1>Preview</h1>
-      <div>
-        <h2>{personalInfo.fullName}</h2>
-        <h2>{personalInfo.email}</h2>
-        <h2>{personalInfo.phoneNumber}</h2>
-        <h2>{personalInfo.location}</h2>
+    <div className="preview-area">
+      <div ref={cvRef} className="a4-paper">
+        <header>
+          <h1>{personalInfo.fullName}</h1>
+          <p>{personalInfo.email}</p>
+          <p>{personalInfo.phoneNumber}</p>
+          <p>{personalInfo.location}</p>
+        </header>
+        <div className="cv-edu">
+          <h2>Education</h2>
+          {eduData.map((data) => {
+            return (
+              <div key={data.id}>
+                <div className="cv-row">
+                  <h3>{data.schoolName}</h3>
+                  <div className="dates">
+                    <p>{data.startDate}</p>
+                    <p>{data.endDate}</p>
+                  </div>
+                </div>
+                <p>{data.degree}</p>
+                <p>{data.eduLocation}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="cv-exp">
+          <h2>Experience</h2>
+          {practicalData.map((data) => {
+            return (
+              <div key={data.id}>
+                <div className="cv-row">
+                  <h3>{data.companyName}</h3>
+                  <div className="dates">
+                    <p>{data.startDate}</p>
+                    <p>{data.endDate}</p>
+                  </div>
+                </div>
+                <p>{data.positionTitle}</p>
+                <p>{data.description}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      {eduData.map((data) => {
-        return (
-          <div key={data.id}>
-            <h2>{data.schoolName}</h2>
-            <h2>{data.degree}</h2>
-            <h2>{data.startDate}</h2>
-            <h2>{data.endDate}</h2>
-            <h2>{data.eduLocation}</h2>
-          </div>
-        );
-      })}
-      {practicalData.map((data) => {
-        return (
-          <div key={data.id}>
-            <h2>{data.companyName}</h2>
-            <h2>{data.positionTitle}</h2>
-            <h2>{data.description}</h2>
-            <h2>{data.startDate}</h2>
-            <h2>{data.endDate}</h2>
-          </div>
-        );
-      })}
     </div>
   );
 }

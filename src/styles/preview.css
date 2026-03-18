@@ -1,5 +1,71 @@
-.preview {
-    background: #fff;
-    color: black;
+.preview-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px;
+  overflow-y: auto;
 }
 
+.a4-paper {
+  width: 794px;
+  min-height: 100vh;
+  background: #fff;
+  padding: 16mm 16mm;
+  color: #111;
+  font-family: 'Arial', sans-serif;
+  font-size: 11pt;
+}
+
+.a4-paper h1 {
+  font-size: 22pt;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.a4-paper header p {
+  font-size: 10pt;
+  color: #444;
+  display: inline;
+}
+
+.a4-paper header p:not(:last-child)::after {
+  content: " · ";
+  color: #999;
+}
+
+.a4-paper h2 {
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #111;
+  border-bottom: 1.5px solid #111;
+  padding-bottom: 3px;
+  margin: 16px 0 8px;
+}
+
+.a4-paper h3 {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 2px;
+}
+
+.a4-paper p {
+  font-size: 10pt;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+.cv-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.dates {
+    display: flex;
+    gap: 0.5rem;
+}
