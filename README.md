@@ -1,16 +1,45 @@
-# React + Vite
+# CV Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic CV builder app built with React as part of the Odin Project curriculum. Fill in your details, preview your CV in real time, and download it as a PDF with one click.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Personal Info** — Add your name, email, phone number, and location
+- **Education** — Add, edit, and delete multiple education entries
+- **Experience** — Add, edit, and delete multiple work experience entries
+- **Live Preview** — See your CV update in real time as you fill in your details
+- **PDF Download** — Download your CV as a clean, single-page A4 PDF
+- **ATS Friendly** — Semantic HTML structure optimized for applicant tracking systems
+- **Dark Mode UI** — Clean, modern dark interface with blue accents
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (Vite)
+- CSS
+- html2pdf.js
+- react-icons
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+```
+
+## What I Learned
+
+- Managing arrays in React state
+- Add, edit, and delete patterns using `.map()` and `.filter()`
+- Lifting state up and passing functions as props
+- `useEffect` for syncing prop changes to local state
+- `useRef` for targeting DOM elements
+- Conditional rendering with show/hide state
+- Generating PDFs from HTML using html2pdf.js
+- Building reusable components with flexible props
+
+## Live Demo
+
+Coming soon.
