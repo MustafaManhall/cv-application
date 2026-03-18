@@ -40,6 +40,4 @@ npm run dev
 - Generating PDFs from HTML using html2pdf.js
 - Building reusable components with flexible props
 
-## Live Demo
-
-Coming soon.
+## [Live Preview](https://mustafamanhall.github.io/cv-application/)
