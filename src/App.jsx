@@ -128,6 +128,11 @@ function App() {
 
   function handleCloseBtn(form) {
     setIsFormOpen({ ...isFormOpen, [form]: false });
+    if (form === "eduForm") {
+      setSelectedEdu(null);
+    } else {
+      setSelectedExp(null);
+    }
   }
 
   function handleActiveTab(tab) {
