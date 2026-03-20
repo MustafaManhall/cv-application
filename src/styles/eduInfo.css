@@ -38,6 +38,7 @@
 .btns {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .btn {
@@ -47,6 +48,7 @@
     font-weight: 500;
     cursor: pointer;
     border: none;
+    width: 100%;
 }
 
 .btn-outline {
