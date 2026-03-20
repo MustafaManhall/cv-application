@@ -18,8 +18,8 @@ function Preview({ personalInfo, eduData, practicalData, cvRef }) {
                 <div className="cv-row">
                   <h3>{data.schoolName}</h3>
                   <div className="dates">
-                    <p>{data.startDate}</p>
-                    <p>{data.endDate}</p>
+                   <p>{`${new Date(data.startDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })} -`}</p>
+                    <p>{new Date(data.endDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })}</p>
                   </div>
                 </div>
                 <p>{data.degree}</p>
@@ -36,8 +36,8 @@ function Preview({ personalInfo, eduData, practicalData, cvRef }) {
                 <div className="cv-row">
                   <h3>{data.companyName}</h3>
                   <div className="dates">
-                    <p>{data.startDate}</p>
-                    <p>{data.endDate}</p>
+                    <p>{`${new Date(data.startDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })} -`}</p>
+                    <p>{new Date(data.endDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })}</p>
                   </div>
                 </div>
                 <p>{data.positionTitle}</p>
