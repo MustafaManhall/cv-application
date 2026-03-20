@@ -3,10 +3,11 @@ import { EduInfo } from "./components/eduInfo";
 import { PersonalInfo } from "./components/personalInfo";
 import { PracticalExp } from "./components/practicalExperience";
 import { Preview } from "./components/preview";
-import { DownloadCv } from "./components/downloadCv";
 import { Card } from "./components/card";
 import { IoMdAdd } from "react-icons/io";
 import "./styles/App.css";
+import { SwitcherTab } from "./components/switcherTab";
+import { Navbar } from "./components/navbar";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -46,6 +47,8 @@ function App() {
   const [selectedExp, setSelectedExp] = useState(null);
 
   const cv = useRef();
+
+  const [activeTab, setActiveTab] = useState("edit");
 
   function handleIsFormOpen(form) {
     setIsFormOpen({ ...isFormOpen, [form]: true });
@@ -127,83 +130,87 @@ function App() {
     setIsFormOpen({ ...isFormOpen, [form]: false });
   }
 
+  function handleActiveTab(tab) {
+    setActiveTab(tab);
+  }
+
   return (
     <>
-      <div className="sidebar">
-        <div className="sidebar-header">
-          <h1>CV Builder</h1>
-          <p>Fill in your details on the left</p>
-        </div>
-        <div className="sidebar-content">
-          <PersonalInfo
-            personalInfo={personalInfo}
-            handleFullName={handleFullName}
-            handleEmail={handleEmail}
-            handlePhoneNumber={handlePhoneNumber}
-            handleLocation={handleLocation}
-          />
-          <div className="divider"></div>
-          <Card
-            data={eduList}
-            titleKey="schoolName"
-            subtitleKey="degree"
-            handleDelete={handleDeleteEduBtn}
-            handleEdit={handleEditEduBtn}
-            sectionTitle="Education"
-          />
-          {!isFormOpen.eduForm && (
-            <button
-              className="add btn btn-outline"
-              onClick={() => handleIsFormOpen("eduForm")}
-            >
-              <IoMdAdd /> Add EduInfo
-            </button>
-          )}
-          {isFormOpen.eduForm && (
-            <EduInfo
-              storeFormData={handleEduInfo}
-              selectedEdu={selectedEdu}
-              setSelected={setSelectedEdu}
-              handleClose={() => handleCloseBtn("eduForm")}
+      <Navbar cvRef={cv} activeTab={activeTab} />
+      <SwitcherTab activeTab={activeTab} handleActiveTab={handleActiveTab} />
+      <main>
+        <div className={`sidebar ${activeTab === "edit" ? "active" : ""}`}>
+          <div className="sidebar-content">
+            <PersonalInfo
+              personalInfo={personalInfo}
+              handleFullName={handleFullName}
+              handleEmail={handleEmail}
+              handlePhoneNumber={handlePhoneNumber}
+              handleLocation={handleLocation}
             />
-          )}
-          <div className="divider"></div>
-          <Card
-            data={practicalList}
-            titleKey="companyName"
-            subtitleKey="description"
-            handleDelete={handleDeleteExpBtn}
-            handleEdit={handleEditExpBtn}
-            sectionTitle="Experience"
-          />
-          {!isFormOpen.practicalForm && (
-            <button
-              className="add btn btn-outline"
-              onClick={() => handleIsFormOpen("practicalForm")}
-            >
-              <IoMdAdd /> Add Experience
-            </button>
-          )}
-          {isFormOpen.practicalForm && (
-            <PracticalExp
-              storePracticalForm={handlePracticalForm}
+            <div className="divider"></div>
+            <Card
+              data={eduList}
+              titleKey="schoolName"
+              subtitleKey="degree"
+              handleDelete={handleDeleteEduBtn}
+              handleEdit={handleEditEduBtn}
+              sectionTitle="Education"
+            />
+            {!isFormOpen.eduForm && (
+              <button
+                className="add btn btn-outline"
+                onClick={() => handleIsFormOpen("eduForm")}
+              >
+                <IoMdAdd /> Add EduInfo
+              </button>
+            )}
+            {isFormOpen.eduForm && (
+              <EduInfo
+                storeFormData={handleEduInfo}
+                selectedEdu={selectedEdu}
+                setSelected={setSelectedEdu}
+                handleClose={() => handleCloseBtn("eduForm")}
+              />
+            )}
+            <div className="divider"></div>
+            <Card
               data={practicalList}
-              selectedEdu={selectedExp}
-              setSelected={setSelectedExp}
-              handleClose={() => handleCloseBtn("practicalForm")}
+              titleKey="companyName"
+              subtitleKey="description"
+              handleDelete={handleDeleteExpBtn}
+              handleEdit={handleEditExpBtn}
+              sectionTitle="Experience"
             />
-          )}
+            {!isFormOpen.practicalForm && (
+              <button
+                className="add btn btn-outline"
+                onClick={() => handleIsFormOpen("practicalForm")}
+              >
+                <IoMdAdd /> Add Experience
+              </button>
+            )}
+            {isFormOpen.practicalForm && (
+              <PracticalExp
+                storePracticalForm={handlePracticalForm}
+                data={practicalList}
+                selectedEdu={selectedExp}
+                setSelected={setSelectedExp}
+                handleClose={() => handleCloseBtn("practicalForm")}
+              />
+            )}
+          </div>
         </div>
-      </div>
-      <div className="preview">
-        <DownloadCv cvRef={cv} />
-        <Preview
-          personalInfo={personalInfo}
-          eduData={eduList}
-          practicalData={practicalList}
-          cvRef={cv}
-        />
-      </div>
+
+        <div className={`preview ${activeTab === "preview" ? "active" : ""}`}>
+          <Preview
+            personalInfo={personalInfo}
+            eduData={eduList}
+            practicalData={practicalList}
+            cvRef={cv}
+          />
+        </div>
+      </main>
     </>
   );
 }

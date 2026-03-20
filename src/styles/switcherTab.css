@@ -1,0 +1,29 @@
+.switcher-btns {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .switcher-btns {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+
+  .switcher-btns button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #1e2436;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .switcher-btns button.active {
+    background: #378ADD;
+    color: #fff;
+  }
+}
