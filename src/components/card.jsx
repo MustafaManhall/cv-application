@@ -13,7 +13,7 @@ function Card({ data, titleKey, subtitleKey, handleDelete, handleEdit, sectionTi
               <h3>{item[titleKey]}</h3>
               <div className="card-description">
                 <h6>{item[subtitleKey]}</h6>
-                <h6>{item.startDate} - {item.endDate}</h6>
+                <h6>{item.startDate} / {item.endDate}</h6>
               </div>
             </div>
             <div className="card-btns">

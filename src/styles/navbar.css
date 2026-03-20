@@ -53,7 +53,13 @@ nav {
   margin-top: 3px;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width:1270px) {
+  .sidebar-header {
+    width: 45vw;
+  }
+}
+
+@media screen and (max-width: 850px) {
 
   .preview-header,
   .sidebar-header {
@@ -61,6 +67,22 @@ nav {
   }
 
   .active {
-    display: block;
+    display: flex;
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .preview-header {
+    padding: 1.1rem;
+  }
+
+  .preview-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .downloadBtn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
   }
 }

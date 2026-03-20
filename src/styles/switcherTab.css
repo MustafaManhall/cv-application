@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .switcher-btns {
     display: flex;
     gap: 8px;
@@ -11,6 +11,7 @@
 
   .switcher-btns button {
     flex: 1;
+    justify-content: center;
     padding: 10px;
     border: none;
     border-radius: 8px;
@@ -25,5 +26,6 @@
   .switcher-btns button.active {
     background: #378ADD;
     color: #fff;
+
   }
 }

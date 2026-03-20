@@ -53,3 +53,9 @@
     background: transparent;
     border: 1px solid #2a2f3e;
 }
+
+@media screen and (max-width: 400px) {
+    .form-row {
+        grid-template-columns: auto;
+    }
+}

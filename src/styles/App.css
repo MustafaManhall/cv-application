@@ -45,13 +45,20 @@ main {
   gap: 8px;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width:1270px) {
+  .sidebar {
+    width: 45vw;
+  }
+}
 
+@media (max-width: 850px) {
   .sidebar,
   .preview {
     display: none;
   }
-
+  .sidebar {
+    width: 100vw;
+  }
   .active {
     display: flex;
   }
