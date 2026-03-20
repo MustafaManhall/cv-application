@@ -2,10 +2,16 @@ import html2pdf from "html2pdf.js";
 import "../styles/navbar.css";
 
 function Navbar({ cvRef, activeTab }) {
-
   function handleDownload() {
     const element = cvRef.current;
-    html2pdf().from(element).save();
+    html2pdf()
+      .set({
+        margin: 16,
+        jsPDF: { unit: 'mm', format: 'a4' },
+        html2canvas: { scale: 2 },
+      })
+      .from(element)
+      .save();
   }
 
   return (
@@ -14,7 +20,9 @@ function Navbar({ cvRef, activeTab }) {
         <h1>CV Builder</h1>
         <p>Fill in your details on the left</p>
       </div>
-      <div className={`preview-header ${activeTab === "preview" ? "active" : ""}`}>
+      <div
+        className={`preview-header ${activeTab === "preview" ? "active" : ""}`}
+      >
         <h2>Live Preview</h2>
         <button className="downloadBtn" onClick={handleDownload}>
           Download Cv
