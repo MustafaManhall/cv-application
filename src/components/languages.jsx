@@ -4,7 +4,7 @@ import "../styles/languages.css";
 function Languages({ storeLanguage, handleClose }) {
   const [languageForm, setLanguageForm] = useState({
     language: "",
-    proficiency: "",
+    proficiency: "Native",
   });
 
   function handleLanguage(e) {
