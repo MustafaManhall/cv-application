@@ -63,7 +63,6 @@ main {
 
   .sidebar {
     width: 100vw;
-    overflow-y: visible;
   }
 
   .active {
