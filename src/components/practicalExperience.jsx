@@ -56,6 +56,7 @@ function PracticalExp({
           name="company-name"
           id="company-name"
           autoComplete="on"
+          placeholder="Google"
           onChange={handleCompanyName}
           value={practicalForm.companyName}
         />
@@ -69,6 +70,7 @@ function PracticalExp({
           type="text"
           name="position-title"
           id="position-title"
+          placeholder="Backend Developer"
           autoComplete="on"
           onChange={handlePositionTitle}
           value={practicalForm.positionTitle}
@@ -79,10 +81,11 @@ function PracticalExp({
         <label htmlFor="description" className="description">
           Description
         </label>
-        <input
+        <textarea
           type="text"
           name="description"
           id="description"
+          placeholder="Describe your responsibilities and achievements..."
           autoComplete="on"
           onChange={handleDescription}
           value={practicalForm.description}

@@ -51,6 +51,7 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           name="school-name"
           id="school-name"
           autoComplete="on"
+          placeholder="University of Baghdad"
           onChange={handleSchoolName}
           value={formData.schoolName}
         />
@@ -64,6 +65,7 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           name="degree"
           id="degree"
           autoComplete="on"
+          placeholder="Computer science"
           onChange={handleDegree}
           value={formData.degree}
         />
@@ -105,6 +107,7 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
           type="text"
           name="location"
           id="location"
+          placeholder="Baghdad, iraq"
           autoComplete="on"
           onChange={handleEduLocation}
           value={formData.eduLocation}

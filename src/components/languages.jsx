@@ -27,6 +27,7 @@ function Languages({ storeLanguage, handleClose }) {
             type="text"
             name="add-language"
             id="add-language"
+            placeholder="Arabic"
             autoComplete="on"
             onChange={handleLanguage}
             value={languageForm.language}

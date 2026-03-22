@@ -20,6 +20,7 @@ function Skills({ storeSkill, handleClose }) {
           type="text"
           name="add-skill"
           id="add-skill"
+          placeholder="Figma"
           autoComplete="on"
           onChange={handleSkill}
           value={skill}
