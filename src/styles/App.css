@@ -52,13 +52,17 @@ main {
 }
 
 @media (max-width: 850px) {
+
   .sidebar,
   .preview {
     display: none;
   }
+
   .sidebar {
     width: 100vw;
+    overflow-y: visible;
   }
+
   .active {
     display: flex;
   }
