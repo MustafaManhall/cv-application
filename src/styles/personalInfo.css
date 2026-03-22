@@ -46,3 +46,28 @@
 .form-group {
     margin-bottom: 12px ;
 }
+
+.personal-info textarea {
+    width: 100%;
+    background-color: #1e2436;
+    font-size: 0.8rem;
+    border: solid 1px #2a2f3e;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    max-height: 150px;
+    color: #e8eaf0;
+    outline: none;
+}
+
+.personal-info textarea:focus {
+    border-color: #378ADD;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #4e535f;
+}

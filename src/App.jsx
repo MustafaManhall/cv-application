@@ -8,13 +8,14 @@ import { IoMdAdd } from "react-icons/io";
 import "./styles/App.css";
 import { SwitcherTab } from "./components/switcherTab";
 import { Navbar } from "./components/navbar";
-
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
     fullName: "",
+    jopTitle: "",
     email: "",
     phoneNumber: "",
     location: "",
+    summary: "",
   });
 
   const [eduList, setEduList] = useState([
@@ -27,11 +28,10 @@ function App() {
       eduLocation: "Baghdad - iraq",
     },
   ]);
-  const [selectedEdu, setSelectedEdu] = useState(null);
 
   const [isFormOpen, setIsFormOpen] = useState({
     practicalForm: false,
-    eduForm: false,
+    eduForm: false
   });
 
   const [practicalList, setPracticalList] = useState([
@@ -45,6 +45,7 @@ function App() {
     },
   ]);
   const [selectedExp, setSelectedExp] = useState(null);
+  const [selectedEdu, setSelectedEdu] = useState(null);
 
   const cv = useRef();
 
@@ -139,6 +140,13 @@ function App() {
     setActiveTab(tab);
   }
 
+  function handleSummary (e) {
+    setPersonalInfo({ ...personalInfo, summary: e.target.value });
+  }
+  function handleJopTitle (e) {
+    setPersonalInfo({ ...personalInfo, jopTitle: e.target.value });
+  }
+
   return (
     <>
       <Navbar cvRef={cv} activeTab={activeTab} />
@@ -149,9 +157,11 @@ function App() {
             <PersonalInfo
               personalInfo={personalInfo}
               handleFullName={handleFullName}
+              handleJopTitle={handleJopTitle}
               handleEmail={handleEmail}
               handlePhoneNumber={handlePhoneNumber}
               handleLocation={handleLocation}
+              handleSummary={handleSummary}
             />
             <div className="divider"></div>
             <Card
@@ -199,7 +209,7 @@ function App() {
               <PracticalExp
                 storePracticalForm={handlePracticalForm}
                 data={practicalList}
-                selectedEdu={selectedExp}
+                selectedExp={selectedExp}
                 setSelected={setSelectedExp}
                 handleClose={() => handleCloseBtn("practicalForm")}
               />

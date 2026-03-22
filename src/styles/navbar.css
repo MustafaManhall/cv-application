@@ -23,6 +23,7 @@ nav {
   display: flex;
   flex-direction: column;
   padding: 20px 24px 16px;
+  border-right: 1px solid #2a2f3e;
 }
 
 .preview-header h2 {
@@ -69,6 +70,7 @@ nav {
   .active {
     display: flex;
     flex: 1;
+    border-right: none;
   }
 }
 

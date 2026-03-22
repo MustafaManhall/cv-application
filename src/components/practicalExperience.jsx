@@ -3,12 +3,12 @@ import "../styles/practicalExperience.css";
 
 function PracticalExp({
   storePracticalForm,
-  selectedEdu,
+  selectedExp,
   setSelected,
   handleClose,
 }) {
   const [practicalForm, setPracticalForm] = useState(
-    selectedEdu || {
+    selectedExp || {
       companyName: "",
       positionTitle: "",
       description: "",

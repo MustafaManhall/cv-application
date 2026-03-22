@@ -6,6 +6,8 @@ function PersonalInfo({
   handleEmail,
   handlePhoneNumber,
   handleLocation,
+  handleSummary,
+  handleJopTitle
 }) {
   return (
     <>
@@ -23,6 +25,20 @@ function PersonalInfo({
             placeholder="Mustafa Manhal"
             value={personalInfo.fullName}
             onChange={handleFullName}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="jop-title" className="jop-title">
+            Jop Title
+          </label>
+          <input
+            type="text"
+            name="jop-title"
+            id="jop-title"
+            autoComplete="on"
+            placeholder="Front-end Developer"
+            value={personalInfo.jopTitle}
+            onChange={handleJopTitle}
           />
         </div>
         <div className="form-row">
@@ -67,6 +83,20 @@ function PersonalInfo({
             placeholder="Baghdad, iraq"
             value={personalInfo.location}
             onChange={handleLocation}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="summary" className="summary-label">
+            Summary
+          </label>
+          <textarea
+            type="text"
+            name="summary"
+            id="summary"
+            autoComplete="on"
+            placeholder="Write a brief summary about yourself..."
+            onChange={handleSummary}
+            value={personalInfo.summary}
           />
         </div>
       </form>
