@@ -26,13 +26,15 @@
 }
 
 .form-row {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
 .form-group {
-    margin-bottom: 12px ;
+    margin-bottom: 12px;
+    width: 100%;
 }
 
 .btns {
