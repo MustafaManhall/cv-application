@@ -1,0 +1,44 @@
+.languages {
+    display: flex;
+    flex-direction: column;
+}
+
+.languages label {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.languages input {
+    width: 100%;
+    background-color: #1e2436;
+    font-size: 0.8rem;
+    border: solid 1px #2a2f3e;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #e8eaf0;
+    outline: none;
+}
+
+.languages input:focus {
+    border-color: #378ADD;
+}
+
+select {
+  width: 100%;
+  background: #1e2436;
+  border: 1px solid #2a2f3e;
+  border-radius: 8px;
+  color: #e8eaf0;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+select:focus {
+  border-color: #378ADD;
+}

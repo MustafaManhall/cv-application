@@ -1,0 +1,26 @@
+.skills {
+    display: flex;
+    flex-direction: column;
+}
+
+.skills label {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.skills input {
+    width: 100%;
+    background-color: #1e2436;
+    font-size: 0.8rem;
+    border: solid 1px #2a2f3e;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #e8eaf0;
+    outline: none;
+}
+
+.skills input:focus {
+    border-color: #378ADD;
+}

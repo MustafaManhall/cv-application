@@ -2,7 +2,14 @@ import { MdDeleteOutline } from "react-icons/md";
 import { RiEditLine } from "react-icons/ri";
 import "../styles/card.css";
 
-function Card({ data, titleKey, subtitleKey, handleDelete, handleEdit, sectionTitle }) {
+function Card({
+  data,
+  titleKey,
+  subtitleKey,
+  handleDelete,
+  handleEdit,
+  sectionTitle,
+}) {
   return (
     <>
       <h5 className="header">{sectionTitle}</h5>
@@ -13,7 +20,9 @@ function Card({ data, titleKey, subtitleKey, handleDelete, handleEdit, sectionTi
               <h3>{item[titleKey]}</h3>
               <div className="card-description">
                 <h6>{item[subtitleKey]}</h6>
-                <h6>{item.startDate} / {item.endDate}</h6>
+                <h6>
+                  {item.startDate} / {item.endDate}
+                </h6>
               </div>
             </div>
             <div className="card-btns">
@@ -34,4 +43,48 @@ function Card({ data, titleKey, subtitleKey, handleDelete, handleEdit, sectionTi
   );
 }
 
-export { Card };
+function Tags({ data, sectionTitle, handleDelete }) {
+  return (
+    <>
+      <h5 className="header">{sectionTitle}</h5>
+      <div className="tags">
+        {data.map((item, index) => {
+          return (
+            <div className="tag" key={index}>
+              <h6>{item}</h6>
+              <button className="icon-btn" onClick={() => handleDelete(index)}>
+                <MdDeleteOutline />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+function LanguageTags({ data, sectionTitle, handleDelete }) {
+  return (
+    <>
+      <h5 className="header">{sectionTitle}</h5>
+      <div className="tags">
+        {data.map((item) => {
+          return (
+            <div className="tag" key={item.id}>
+              <h6>
+                {item.language} - {item.proficiency}
+              </h6>
+              <button
+                className="icon-btn"
+                onClick={() => handleDelete(item.id)}
+              >
+                <MdDeleteOutline />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+export { Card, Tags, LanguageTags };

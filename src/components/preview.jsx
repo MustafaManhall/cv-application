@@ -1,15 +1,24 @@
 import "../styles/preview.css";
 
-function Preview({ personalInfo, eduData, practicalData, cvRef }) {
+function Preview({
+  personalInfo,
+  eduData,
+  practicalData,
+  skillsData,
+  languagesData,
+  cvRef,
+}) {
   return (
     <div className="preview-area">
       <div ref={cvRef} className="a4-paper">
         <header>
           <h1>{personalInfo.fullName}</h1>
           <h3>{personalInfo.jopTitle}</h3>
-          <p>{personalInfo.email}</p>
-          <p>{personalInfo.phoneNumber}</p>
-          <p>{personalInfo.location}</p>
+          <div className="contacts">
+            <p>{personalInfo.email}</p>
+            <p>{personalInfo.phoneNumber}</p>
+            <p>{personalInfo.location}</p>
+          </div>
         </header>
         <div className="summary">
           <h2>Summary</h2>
@@ -58,6 +67,26 @@ function Preview({ personalInfo, eduData, practicalData, cvRef }) {
                 <p>{data.positionTitle}</p>
                 <p>{data.description}</p>
               </div>
+            );
+          })}
+        </div>
+        <div className="cv-skills">
+          <h2>Skills</h2>
+          {skillsData.map((skill, index) => {
+            return (
+              <p key={index} className="skill">
+                {skill}
+              </p>
+            );
+          })}
+        </div>
+        <div className="cv-language">
+          <h2>Languages</h2>
+          {languagesData.map((data) => {
+            return (
+              <p key={data.id} className="language">
+                {data.language} - {data.proficiency}
+              </p>
             );
           })}
         </div>

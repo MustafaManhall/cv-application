@@ -34,11 +34,6 @@
    display: inline;
  }
 
- .a4-paper header p:not(:last-child)::after {
-   content: " · ";
-   color: #999;
- }
-
  .a4-paper h2 {
    font-size: 11pt;
    font-weight: 700;
@@ -73,6 +68,10 @@
  .dates {
    display: flex;
    gap: 0.5rem;
+ }
+
+ .contacts p {
+  margin-right: 8px;
  }
 
  @media screen and (max-width: 1024px) {
