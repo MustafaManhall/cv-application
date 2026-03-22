@@ -2,25 +2,23 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 main {
   display: flex;
-}
-
-.divider {
-  height: 1px;
-  background-color: #2a2f3e;
-  margin: 20px 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .preview {
-  height: 100vh;
   width: 100%;
   background: #0f1117;
   display: flex;
   justify-content: center;
   flex: 1;
+  overflow-y: auto;
 }
 
 .sidebar {
@@ -28,7 +26,6 @@ main {
   border-right: 1px solid #2a2f3e;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 40vw;
   overflow-y: auto;
 }
@@ -36,6 +33,12 @@ main {
 .sidebar-content {
   padding: 20px 24px;
   background: #161b27;
+}
+
+.divider {
+    background-color: rgb(42, 47, 62);
+    height: 1px;
+    margin: 20px 0px;
 }
 
 .add {
