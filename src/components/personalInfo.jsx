@@ -61,7 +61,7 @@ function PersonalInfo({
               Phone Number
             </label>
             <input
-              type="text"
+              type="tel"
               name="phone-number"
               id="phone-number"
               autoComplete="on"
