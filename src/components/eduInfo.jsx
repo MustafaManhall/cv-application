@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "../styles/eduInfo.css";
 
-function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
+function EduInfo({ storeFormData, selected, setSelected, handleClose }) {
   const [formData, setFormData] = useState(
-    selectedEdu || {
+    selected.edu || {
       schoolName: "",
       degree: "",
       startDate: "",
@@ -37,7 +37,7 @@ function EduInfo({ storeFormData, selectedEdu, setSelected, handleClose }) {
       endDate: "",
       eduLocation: "",
     });
-    setSelected(null);
+    setSelected({...selected, edu: null});
   }
 
   return (

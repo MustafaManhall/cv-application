@@ -6,6 +6,7 @@ function Preview({
   practicalData,
   skillsData,
   languagesData,
+  projectsData,
   cvRef,
 }) {
   return (
@@ -65,6 +66,28 @@ function Preview({
                   </div>
                 </div>
                 <p>{data.positionTitle}</p>
+                <p>{data.description}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="cv-pro">
+          <h2>Projects</h2>
+          {projectsData.map((data) => {
+            return (
+              <div key={data.id}>
+                <div className="cv-row">
+                  <h3>{data.projectName}</h3>
+                  <div className="dates">
+                    <p>{`${new Date(data.startDate).toLocaleDateString("en-US", { year: "numeric", month: "short" })} -`}</p>
+                    <p>
+                      {new Date(data.endDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                      })}
+                    </p>
+                  </div>
+                </div>
                 <p>{data.description}</p>
               </div>
             );

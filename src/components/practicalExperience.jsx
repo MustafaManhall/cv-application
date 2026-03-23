@@ -3,12 +3,12 @@ import "../styles/practicalExperience.css";
 
 function PracticalExp({
   storePracticalForm,
-  selectedExp,
+  selected,
   setSelected,
   handleClose,
 }) {
   const [practicalForm, setPracticalForm] = useState(
-    selectedExp || {
+    selected.exp || {
       companyName: "",
       positionTitle: "",
       description: "",
@@ -43,7 +43,7 @@ function PracticalExp({
       startDate: "",
       endDate: "",
     });
-    setSelected(null);
+    setSelected({...selected, exp: null});
   }
   return (
     <form className="practical-exp">

@@ -10,6 +10,7 @@ import { SwitcherTab } from "./components/switcherTab";
 import { Navbar } from "./components/navbar";
 import { Skills } from "./components/skills";
 import { Languages } from "./components/languages";
+import { Projects } from "./components/projects";
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
     fullName: "",
@@ -44,13 +45,30 @@ function App() {
     eduForm: false,
     skillsForm: false,
     languagesForm: false,
+    projectsForm: false,
   });
-  const [selectedExp, setSelectedExp] = useState(null);
-  const [selectedEdu, setSelectedEdu] = useState(null);
+
+  const [selected, setSelected] = useState({
+    edu: null,
+    exp: null,
+    pro: null,
+  });
+
   const cv = useRef();
   const [activeTab, setActiveTab] = useState("edit");
-  const [skills, setSkills] = useState(["Microsoft Word","Microsoft Excel"]);
-  const [languages, setLanguages] = useState([{id: "language init", language: "English", proficiency: "Fluent"}]);
+  const [skills, setSkills] = useState(["Microsoft Word", "Microsoft Excel"]);
+  const [languages, setLanguages] = useState([
+    { id: "language init", language: "English", proficiency: "Fluent" },
+  ]);
+  const [projectsList, setProjectsList] = useState([
+    {
+      id:"project-init",
+      projectName: "Website",
+      description: "front-end with react",
+      startDate: "2025-07-01",
+      endDate: "2025-12-01",
+    },
+  ]);
 
   function handleIsFormOpen(form) {
     setIsFormOpen({ ...isFormOpen, [form]: true });
@@ -106,12 +124,12 @@ function App() {
   }
   function handleEditEduBtn(key) {
     const item = eduList.find((data) => data.id === key);
-    setSelectedEdu(item);
+    setSelected({ ...selected, edu: item });
     setIsFormOpen({ ...isFormOpen, eduForm: true });
   }
   function handleEditExpBtn(key) {
     const item = practicalList.find((data) => data.id === key);
-    setSelectedExp(item);
+    setSelected({ ...selected, exp: item });
     setIsFormOpen({ ...isFormOpen, practicalForm: true });
   }
   function handleDeleteEduBtn(key) {
@@ -125,9 +143,11 @@ function App() {
   function handleCloseBtn(form) {
     setIsFormOpen({ ...isFormOpen, [form]: false });
     if (form === "eduForm") {
-      setSelectedEdu(null);
+      setSelected({ ...selected, edu: null });
     } else if (form === "practicalForm") {
-      setSelectedExp(null);
+      setSelected({ ...selected, exp: null });
+    } else if (form === "projectsForm") {
+      setSelected({ ...selected, pro: null });
     }
   }
   function handleActiveTab(tab) {
@@ -154,6 +174,35 @@ function App() {
   function handleDeleteLanguage(key) {
     const newList = languages.filter((data) => data.id !== key);
     setLanguages(newList);
+  }
+  function handleProjectForm(project) {
+    if (project.id === undefined) {
+      setProjectsList([
+        ...projectsList,
+        { id: crypto.randomUUID(), ...project },
+      ]);
+      setIsFormOpen({ ...isFormOpen, projectsForm: false });
+    } else {
+      setProjectsList(
+        projectsList.map((data) => {
+          if (data.id === project.id) {
+            return project;
+          } else {
+            return data;
+          }
+        }),
+      );
+      setIsFormOpen({ ...isFormOpen, projectsForm: false });
+    }
+  }
+  function handleEditProBtn(key) {
+    const item = projectsList.find((data) => data.id === key);
+    setSelected({ ...selected, pro: item });
+    setIsFormOpen({ ...isFormOpen, projectsForm: true });
+  }
+  function handleDeleteProBtn(key) {
+    const newList = projectsList.filter((data) => data.id !== key);
+    setProjectsList(newList);
   }
 
   return (
@@ -192,8 +241,8 @@ function App() {
             {isFormOpen.eduForm && (
               <EduInfo
                 storeFormData={handleEduInfo}
-                selectedEdu={selectedEdu}
-                setSelected={setSelectedEdu}
+                selected={selected}
+                setSelected={setSelected}
                 handleClose={() => handleCloseBtn("eduForm")}
               />
             )}
@@ -218,9 +267,34 @@ function App() {
               <PracticalExp
                 storePracticalForm={handlePracticalForm}
                 data={practicalList}
-                selectedExp={selectedExp}
-                setSelected={setSelectedExp}
+                selected={selected}
+                setSelected={setSelected}
                 handleClose={() => handleCloseBtn("practicalForm")}
+              />
+            )}
+            <div className="divider"></div>
+            <Card
+              data={projectsList}
+              titleKey="projectName"
+              subtitleKey="description"
+              handleDelete={handleDeleteProBtn}
+              handleEdit={handleEditProBtn}
+              sectionTitle="Projects"
+            />
+            {!isFormOpen.projectsForm && (
+              <button
+                className="add btn btn-outline"
+                onClick={() => handleIsFormOpen("projectsForm")}
+              >
+                <IoMdAdd /> Add Project
+              </button>
+            )}
+            {isFormOpen.projectsForm && (
+              <Projects
+                storeProjectData={handleProjectForm}
+                selected={selected}
+                setSelected={setSelected}
+                handleClose={() => handleCloseBtn("projectsForm")}
               />
             )}
             <div className="divider"></div>
@@ -273,6 +347,7 @@ function App() {
             practicalData={practicalList}
             skillsData={skills}
             languagesData={languages}
+            projectsData={projectsList}
             cvRef={cv}
           />
         </div>
