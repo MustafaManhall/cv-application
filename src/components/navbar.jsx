@@ -18,7 +18,7 @@ function Navbar({ cvRef, activeTab }) {
     <nav>
       <div className={`sidebar-header ${activeTab === "edit" ? "active" : ""}`}>
         <h1>CV Builder</h1>
-        <p>Fill in your details on the left</p>
+        <p>Fill in your details...</p>
       </div>
       <div
         className={`preview-header ${activeTab === "preview" ? "active" : ""}`}

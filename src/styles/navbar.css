@@ -8,11 +8,7 @@ nav {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #2a2f3e;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background: #161b27;
-  overflow-y: auto;
 }
 
 .preview-header {
@@ -67,6 +63,7 @@ nav {
 }
 
 @media screen and (max-width: 850px) {
+
   .preview-header,
   .sidebar-header {
     display: none;
