@@ -59,7 +59,18 @@
 
 input::placeholder,
 textarea::placeholder {
-  color: #4e535f;
+    color: #4e535f;
+}
+
+input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 35px;
+    padding: 8px 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    font-size: 13px;
 }
 
 @media screen and (max-width: 425px) {
