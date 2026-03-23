@@ -7,6 +7,7 @@ function Preview({
   skillsData,
   languagesData,
   projectsData,
+  certificatesData,
   cvRef,
 }) {
   return (
@@ -86,6 +87,22 @@ function Preview({
                         month: "short",
                       })}
                     </p>
+                  </div>
+                </div>
+                <p>{data.description}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="cv-certificates">
+          <h2>Certificates</h2>
+          {certificatesData.map((data) => {
+            return (
+              <div key={data.id}>
+                <div className="cv-row">
+                  <h3>{data.certificateTitle}</h3>
+                  <div className="dates">
+                    <p>{`${new Date(data.date).toLocaleDateString("en-US", { year: "numeric", month: "short" })}`}</p>
                   </div>
                 </div>
                 <p>{data.description}</p>

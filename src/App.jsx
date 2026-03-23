@@ -11,6 +11,7 @@ import { Navbar } from "./components/navbar";
 import { Skills } from "./components/skills";
 import { Languages } from "./components/languages";
 import { Projects } from "./components/projects";
+import { Certificates } from "./components/certificates";
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
     fullName: "",
@@ -46,12 +47,14 @@ function App() {
     skillsForm: false,
     languagesForm: false,
     projectsForm: false,
+    certificatesForm: false
   });
 
   const [selected, setSelected] = useState({
     edu: null,
     exp: null,
     pro: null,
+    cer: null
   });
 
   const cv = useRef();
@@ -62,12 +65,21 @@ function App() {
   ]);
   const [projectsList, setProjectsList] = useState([
     {
-      id:"project-init",
+      id: "project-init",
       projectName: "Website",
       description: "front-end with react",
       startDate: "2025-07-01",
       endDate: "2025-12-01",
     },
+  ]);
+  const [certificatesList, setCertificatesList] = useState([
+    {
+      id: "certificate-init",
+      certificateTitle: "Google Internship",
+      certificateNumber: "1023",
+      description: "learn front-end development",
+      date: "2025-07-1"
+    }
   ]);
 
   function handleIsFormOpen(form) {
@@ -148,6 +160,8 @@ function App() {
       setSelected({ ...selected, exp: null });
     } else if (form === "projectsForm") {
       setSelected({ ...selected, pro: null });
+    } else if ( form === "certificatesForm") {
+      setSelected({...selected, cer: null});
     }
   }
   function handleActiveTab(tab) {
@@ -204,6 +218,35 @@ function App() {
     const newList = projectsList.filter((data) => data.id !== key);
     setProjectsList(newList);
   }
+  function handleCertificatesForm(certificate) {
+    if (certificate.id === undefined) {
+      setCertificatesList([
+        ...certificatesList,
+        { id: crypto.randomUUID(), ...certificate },
+      ]);
+      setIsFormOpen({ ...isFormOpen, certificatesForm: false });
+    } else {
+      setCertificatesList(
+        certificatesList.map((data) => {
+          if (data.id === certificate.id) {
+            return certificate;
+          } else {
+            return data;
+          }
+        }),
+      );
+      setIsFormOpen({ ...isFormOpen, certificatesForm: false });
+    }
+  }
+  function handleEditCerBtn(key) {
+    const item = certificatesList.find((data) => data.id === key);
+    setSelected({ ...selected, cer: item });
+    setIsFormOpen({ ...isFormOpen, certificatesForm: true });
+  }
+  function handleDeleteCerBtn(key) {
+    const newList = certificatesList.filter((data) => data.id !== key);
+    setCertificatesList(newList);
+  }
 
   return (
     <>
@@ -226,6 +269,7 @@ function App() {
               data={eduList}
               titleKey="schoolName"
               subtitleKey="degree"
+              startDateKey="startDate"
               handleDelete={handleDeleteEduBtn}
               handleEdit={handleEditEduBtn}
               sectionTitle="Education"
@@ -251,6 +295,7 @@ function App() {
               data={practicalList}
               titleKey="companyName"
               subtitleKey="description"
+              startDateKey="startDate"
               handleDelete={handleDeleteExpBtn}
               handleEdit={handleEditExpBtn}
               sectionTitle="Experience"
@@ -277,6 +322,7 @@ function App() {
               data={projectsList}
               titleKey="projectName"
               subtitleKey="description"
+              startDateKey="startDate"
               handleDelete={handleDeleteProBtn}
               handleEdit={handleEditProBtn}
               sectionTitle="Projects"
@@ -297,6 +343,30 @@ function App() {
                 handleClose={() => handleCloseBtn("projectsForm")}
               />
             )}
+            <div className="divider"></div>
+            <Card
+              data={certificatesList}
+              titleKey="certificateTitle"
+              subtitleKey="description"
+              startDateKey="date"
+              handleDelete={handleDeleteCerBtn}
+              handleEdit={handleEditCerBtn}
+              sectionTitle="Certificates"
+            />
+            {!isFormOpen.certificatesForm && (
+              <button
+                className="add btn btn-outline"
+                onClick={() => handleIsFormOpen("certificatesForm")}
+              >
+                <IoMdAdd /> Add Certificate
+              </button>
+            )}
+            {isFormOpen.certificatesForm && <Certificates
+              storeCertificatesData={handleCertificatesForm}
+              selected={selected}
+              setSelected={setSelected}
+              handleClose={() => handleCloseBtn("certificatesForm")}
+            />}
             <div className="divider"></div>
             <Tags
               data={skills}
@@ -348,6 +418,7 @@ function App() {
             skillsData={skills}
             languagesData={languages}
             projectsData={projectsList}
+            certificatesData={certificatesList}
             cvRef={cv}
           />
         </div>

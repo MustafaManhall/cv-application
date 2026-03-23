@@ -6,6 +6,7 @@ function Card({
   data,
   titleKey,
   subtitleKey,
+  startDateKey,
   handleDelete,
   handleEdit,
   sectionTitle,
@@ -21,7 +22,7 @@ function Card({
               <div className="card-description">
                 <h6>{item[subtitleKey]}</h6>
                 <h6>
-                  {item.startDate} / {item.endDate}
+                  {item[startDateKey]} {item.endDate && `/ ${item.endDate}`}
                 </h6>
               </div>
             </div>
